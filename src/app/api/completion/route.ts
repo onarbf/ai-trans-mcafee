@@ -9,7 +9,7 @@ const config = new Configuration({
 const openai = new OpenAIApi(config)
  
 // IMPORTANT! Set the runtime to edge
-// export const runtime = 'edge'
+export const runtime = 'edge'
  
 const createPrompt = ({prompt, language, htmlType}: {
   prompt: string,
