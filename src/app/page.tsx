@@ -3,7 +3,7 @@
 import { useCompletion } from 'ai/react'
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react'
-const DynamicReactJson = dynamic(import('react-json-view'), { ssr: false });
+const DynamicReactJson = dynamic(()=> import('react-json-view'))
 
 export default function Completion() {
   const [language, setLanguage] = useState('english');
@@ -107,8 +107,12 @@ const x = {"menu": {
                 <h2>You will see here the output</h2>
               </div>
               <div className="flex flex-col gap-2 grow bg-white">
+                 
+                 <div>
                  {/* @ts-ignore  */}
-                {htmlType==='email' && parsedCompletion !== "{}" && <DynamicReactJson src={parsedCompletion}/>}
+                 {htmlType==='email' && parsedCompletion !== "{}" && <DynamicReactJson src={parsedCompletion}/>}
+                  </div>
+                
                 {htmlType==='email' && parsedCompletion === "{}"&& <output className="flex h-1/3 grow flex-col w-full border rounded overflow-y-scroll">{completion}</output>}
                 {htmlType==='ngm' && <output className="h-1/2 max-h-[300px] border rounded overflow-y-scroll">{completion}</output>}
                 {/* @ts-ignore  */}
